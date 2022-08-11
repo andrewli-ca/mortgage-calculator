@@ -9,6 +9,7 @@ import {
   Spacer,
   Title,
 } from '../components/sharedstyles';
+import { Slider } from '../components/Slider';
 import type { NextPageWithLayout } from './_app';
 
 const PaymentAmountWrapper = styled.div`
@@ -73,6 +74,24 @@ const Page: NextPageWithLayout = () => {
       <Spacer size={8} />
       <Description>Qualify or apply your mortgage in minutes</Description>
       <Spacer size={48} />
+      <form>
+        <Slider
+          type="price"
+          label="Purchase Price"
+          value={250000}
+          min={50000}
+          max={2500000}
+        />
+        <Spacer size={48} />
+        <Slider
+          type="percentage"
+          label="Interest Rate"
+          value={150}
+          min={0}
+          max={2500}
+        />
+        <Spacer size={48} />
+      </form>
       <Card>
         <PaymentAmountWrapper>
           <p>Your total monthly payment will be</p>
