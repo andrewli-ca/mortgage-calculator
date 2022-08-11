@@ -15,6 +15,7 @@ let RadioContext = React.createContext<RadioGroupState | null>(null);
 
 interface RadioGroupProps {
   children: React.ReactChild[];
+  onSelect: any;
 }
 
 const StyledRadioGroup = styled.div`
@@ -37,9 +38,15 @@ const StyledRadioGroup = styled.div`
 `;
 
 function RadioGroup(props: AriaRadioGroupProps & RadioGroupProps) {
-  let { children, label } = props;
+  let { children, onSelect, label } = props;
   let state = useRadioGroupState(props);
   let { radioGroupProps, labelProps } = useRadioGroup(props, state);
+
+  React.useEffect(() => {
+    if (state.selectedValue) {
+      onSelect(+state.selectedValue);
+    }
+  }, [onSelect, state.selectedValue]);
 
   return (
     <StyledRadioGroup {...radioGroupProps}>

@@ -1,3 +1,4 @@
+import { cp } from 'fs/promises';
 import { Fragment, ReactElement, useState } from 'react';
 import styled from 'styled-components';
 import { HomeLayout } from '../components/HomeLayout';
@@ -121,6 +122,7 @@ const ApplyButton = styled(Button)`
 const Page: NextPageWithLayout = () => {
   const [purchasePrice, setPurchasePrice] = useState(250000);
   const [interestRate, setInterestRate] = useState(150);
+  const [termOfLoan, setTermOfLoan] = useState(20);
 
   return (
     <Fragment>
@@ -146,7 +148,11 @@ const Page: NextPageWithLayout = () => {
             max={2500}
             onChange={setInterestRate}
           />
-          <RadioGroup label="Period">
+          <RadioGroup
+            label="Period"
+            onSelect={setTermOfLoan}
+            defaultValue={termOfLoan.toString()}
+          >
             <Radio value="20">20 Years</Radio>
             <Radio value="25">25 Years</Radio>
             <Radio value="30">30 Years</Radio>
