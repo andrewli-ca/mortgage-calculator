@@ -1,15 +1,16 @@
-import { ReactElement } from 'react';
+import { Fragment, ReactElement } from 'react';
 import { HomeLayout } from '../components/HomeLayout';
 import Layout from '../components/Layout';
+import { Description, Title } from '../components/sharedstyles';
 
 import type { NextPageWithLayout } from './_app';
 
 const Page: NextPageWithLayout = () => {
   return (
-    <div>
-      <h1>Get started with Digital Credit Experience</h1>
-      <p>Qualify or apply your mortgage in minutes</p>
-    </div>
+    <Fragment>
+      <Title>Get started with Digital Credit Experience</Title>
+      <Description>Qualify or apply your mortgage in minutes</Description>
+    </Fragment>
   );
 };
 
