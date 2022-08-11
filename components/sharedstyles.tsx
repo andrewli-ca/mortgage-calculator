@@ -27,4 +27,21 @@ const Spacer = styled.div<SpacerProps>`
   min-height: ${(props) => props.size}px;
 `;
 
-export { Container, Title, Description, Spacer };
+const Button = styled.button`
+  font-size: 16px;
+  padding: 14px 24px;
+  border-radius: 24px;
+  background-color: ${(props) => props.theme.colors.primary};
+  color: #fff;
+  cursor: pointer;
+`;
+
+const Card = styled.div`
+  padding-top: 32px;
+  padding-bottom: 32px;
+  background-color: #fff;
+  border-radius: 16px;
+  box-shadow: rgba(149, 157, 165, 0.2) 0px 8px 24px;
+`;
+
+export { Container, Title, Description, Spacer, Button, Card };
