@@ -118,11 +118,11 @@ function BaseSlider({
 
 function getPriceLabel(value: number) {
   if (value >= 1000000) {
-    return `${value / 1000000}M`;
+    return `$${value / 1000000}M`;
   }
 
   // for values in the thousands
-  return `${value / 1000}K`;
+  return `$${value / 1000}K`;
 }
 
 function getPercentageLabel(value: number) {
