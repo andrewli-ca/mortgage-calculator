@@ -19,4 +19,12 @@ const Description = styled.p`
   font-size: 14px;
 `;
 
-export { Container, Title, Description };
+interface SpacerProps {
+  size: number;
+}
+
+const Spacer = styled.div<SpacerProps>`
+  min-height: ${(props) => props.size}px;
+`;
+
+export { Container, Title, Description, Spacer };
