@@ -20,6 +20,8 @@ const PaymentAmountWrapper = styled.div`
   align-items: center;
   padding-top: 36px;
   padding-bottom: 18px;
+  padding-left: 32px;
+  padding-right: 32px;
 
   & p {
     color: #9faeb9;
@@ -78,9 +80,9 @@ const MortgageCalculatorWrapper = styled.div`
 
   > div:nth-child(1) {
     flex-grow: 1;
+    min-width: 256px;
 
     @media screen and (min-width: 768px) {
-      flex-basis: 256px;
       max-width: 256px;
       flex-grow: 0;
     }
