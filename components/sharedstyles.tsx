@@ -1,14 +1,10 @@
 import styled from 'styled-components';
 
 const Container = styled.div`
-  padding: 0 0.5rem;
-  display: flex;
-  flex-flow: column nowrap;
-  justify-content: center;
-  align-items: center;
-  height: 100vh;
-  min-height: 100vh;
+  max-width: 1280px;
+  margin: auto;
 `;
+
 const Main = styled.main`
   padding: 5rem 0;
   flex: 1;
