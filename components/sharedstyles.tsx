@@ -8,15 +8,15 @@ const Container = styled.div`
 const Title = styled.h1`
   color: #66747f;
   line-height: 1.15;
-  font-size: 24px;
-  font-weight: 500;
+  font-size: 17px;
+  font-weight: 600;
   text-decoration: none;
 `;
 
 const Description = styled.p`
   color: #bdc9d5;
   line-height: 1.5;
-  font-size: 14px;
+  font-size: 10px;
 `;
 
 interface SpacerProps {
@@ -37,8 +37,7 @@ const Button = styled.button`
 `;
 
 const Card = styled.div`
-  padding-top: 32px;
-  padding-bottom: 32px;
+  position: relative;
   background-color: #fff;
   border-radius: 16px;
   box-shadow: rgba(149, 157, 165, 0.2) 0px 8px 24px;

@@ -8,6 +8,10 @@ const PageLayout = styled.div`
   min-height: 100%;
   margin: auto;
   padding: 48px 16px;
+
+  @media screen and (min-width: 768px) {
+    padding: 60px 54px;
+  }
 `;
 
 function HomeLayout({ children }: { children: ReactNode }) {

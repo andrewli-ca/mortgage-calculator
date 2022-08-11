@@ -20,11 +20,11 @@ interface RadioGroupProps {
 const StyledRadioGroup = styled.div`
   > span {
     color: #929ba4;
-    font-size: 12px;
+    font-size: 10px;
   }
 
   > label:not(:last-child) {
-    padding-bottom: 12px;
+    padding-bottom: 8px;
   }
 `;
 
@@ -52,6 +52,7 @@ const StyledRadio = styled.label<StyleRadioProps>`
   opacity: ${(props) => (props.isDisabled ? 0.4 : 1)};
   font-weight: 500;
   color: #000;
+  font-size: 13px;
 `;
 
 function Radio(props: AriaRadioProps) {

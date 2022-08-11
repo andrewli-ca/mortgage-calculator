@@ -23,14 +23,15 @@ const PaymentAmountWrapper = styled.div`
 
   & p {
     color: #9faeb9;
-    font-weight: 500;
+    font-weight: 600;
+    font-size: 14px;
     text-align: center;
   }
 `;
 
 const PaymentAmount = styled.div`
   text-align: center;
-  margin-top: 48px;
+  margin-top: 56px;
 
   .symbol,
   .dollars,
@@ -48,14 +49,13 @@ const PaymentAmount = styled.div`
   }
 
   .dollars {
-    font-size: 82px;
+    font-size: 72px;
     line-height: 1;
     vertical-align: top;
   }
 
   .unit {
-    margin-top: 32px;
-    margin-bottom: 32px;
+    margin-top: 36px;
     letter-spacing: 0em;
   }
 `;
@@ -64,53 +64,80 @@ const ApplyButton = styled(Button)`
   position: absolute;
   left: 0;
   right: 0;
+  bottom: -24px;
   width: fit-content;
   margin: 0 auto;
+`;
+
+const MortgageCalculatorWrapper = styled.div`
+  display: flex;
+  justify-content: space-between;
+  flex-wrap: wrap;
+  max-width: 672px;
+  gap: 80px;
+
+  > div:nth-child(1) {
+    flex-grow: 1;
+
+    @media screen and (min-width: 768px) {
+      flex-basis: 256px;
+      max-width: 256px;
+      flex-grow: 0;
+    }
+  }
+
+  > div:nth-child(2) {
+    flex-grow: 1;
+  }
 `;
 
 const Page: NextPageWithLayout = () => {
   return (
     <Fragment>
       <Title>Get started with Digital Credit Experience</Title>
-      <Spacer size={8} />
+      <Spacer size={6} />
       <Description>Qualify or apply your mortgage in minutes</Description>
-      <Spacer size={48} />
-      <form>
-        <Slider
-          type="price"
-          label="Purchase Price"
-          value={250000}
-          min={50000}
-          max={2500000}
-        />
-        <Spacer size={48} />
-        <Slider
-          type="percentage"
-          label="Interest Rate"
-          value={150}
-          min={0}
-          max={2500}
-        />
-        <Spacer size={48} />
-        <RadioGroup label="Period">
-          <Radio value="20">20 Years</Radio>
-          <Radio value="25">25 Years</Radio>
-          <Radio value="30">30 Years</Radio>
-        </RadioGroup>
-      </form>
-      <Spacer size={48} />
-      <Card>
-        <PaymentAmountWrapper>
-          <p>Your total monthly payment will be</p>
-          <PaymentAmount>
-            <span className="symbol">$</span>
-            <span className="dollars">853</span>
-            <span className="cents">50</span>
-            <p className="unit">/month</p>
-          </PaymentAmount>
-        </PaymentAmountWrapper>
-        <ApplyButton>Apply Today</ApplyButton>
-      </Card>
+      <Spacer size={36} />
+      <MortgageCalculatorWrapper>
+        <div>
+          <Slider
+            type="price"
+            label="Purchase Price"
+            value={250000}
+            min={50000}
+            max={2500000}
+          />
+          <Spacer size={36} />
+          <Slider
+            type="percentage"
+            label="Interest Rate"
+            value={150}
+            min={0}
+            max={2500}
+          />
+          <Spacer size={36} />
+          <RadioGroup label="Period">
+            <Radio value="20">20 Years</Radio>
+            <Radio value="25">25 Years</Radio>
+            <Radio value="30">30 Years</Radio>
+          </RadioGroup>
+        </div>
+        <div>
+          <Card>
+            <PaymentAmountWrapper>
+              <p>Your total monthly payment will be</p>
+              <PaymentAmount>
+                <span className="symbol">$</span>
+                <span className="dollars">853</span>
+                <span className="cents">50</span>
+                <p className="unit">/month</p>
+              </PaymentAmount>
+            </PaymentAmountWrapper>
+            <Spacer size={48} />
+            <ApplyButton>Apply Today</ApplyButton>
+          </Card>
+        </div>
+      </MortgageCalculatorWrapper>
     </Fragment>
   );
 };

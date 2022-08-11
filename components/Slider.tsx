@@ -11,7 +11,7 @@ import styled from 'styled-components';
 const SliderWrapper = styled.div`
   label {
     color: #929ba4;
-    font-size: 12px;
+    font-size: 10px;
   }
 `;
 
@@ -37,11 +37,11 @@ interface StyledSliderMarkerLabelProps {
 
 const StyledSliderMarkerLabel = styled.span<StyledSliderMarkerLabelProps>`
   position: absolute;
-  top: 16px;
+  top: 14px;
   left: ${(props) => (props.type === 'min' ? '0px' : 'auto')};
   right: ${(props) => (props.type === 'max' ? '0px' : 'auto')};
   color: #929ba4;
-  font-size: 12px;
+  font-size: 10px;
 `;
 
 const StyledSliderHandle = styled(SliderHandle)`
@@ -52,23 +52,23 @@ const StyledSliderHandle = styled(SliderHandle)`
 `;
 
 const DisplayValue = styled.div`
-  padding-top: 12px;
-  padding-bottom: 16px;
+  padding-top: 8px;
+  padding-bottom: 12px;
   margin-left: 4px;
   font-weight: 500;
   color: #4b5563;
 
   .symbol {
     display: inline-block;
-    font-size: 18px;
-    line-height: 1.3;
+    font-size: 13px;
+    line-height: 1.2;
     vertical-align: top;
-    min-width: 16px;
+    min-width: 12px;
   }
 
   .value,
   .percentage {
-    font-size: 32px;
+    font-size: 21px;
     line-height: 1;
   }
 `;

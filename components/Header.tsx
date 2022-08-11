@@ -13,7 +13,14 @@ const StyledHeader = styled.header`
 
 const StyledNav = styled.nav`
   padding: 12px 16px;
+  padding-left: 16px;
+  padding-right: 16px;
   height: 100%;
+
+  @media screen and (min-width: 768px) {
+    padding-left: 54px;
+    padding-right: 54px;
+  }
 `;
 
 const HeaderContainer = styled(Container)`
