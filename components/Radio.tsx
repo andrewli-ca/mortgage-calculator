@@ -21,10 +21,18 @@ const StyledRadioGroup = styled.div`
   > span {
     color: #929ba4;
     font-size: 10px;
+
+    @media screen and (min-width: 896px) {
+      font-size: 12px;
+    }
   }
 
   > label:not(:last-child) {
-    padding-bottom: 8px;
+    padding-bottom: 6px;
+
+    @media screen and (min-width: 896px) {
+      padding-bottom: 12px;
+    }
   }
 `;
 
@@ -53,6 +61,10 @@ const StyledRadio = styled.label<StyleRadioProps>`
   font-weight: 600;
   color: #000;
   font-size: 13px;
+
+  @media screen and (min-width: 896px) {
+    font-size: 16px;
+  }
 `;
 
 function Radio(props: AriaRadioProps) {

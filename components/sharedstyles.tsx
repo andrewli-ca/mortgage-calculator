@@ -11,12 +11,20 @@ const Title = styled.h1`
   font-size: 17px;
   font-weight: 600;
   text-decoration: none;
+
+  @media screen and (min-width: 896px) {
+    font-size: 24px;
+  }
 `;
 
 const Description = styled.p`
   color: #bdc9d5;
   line-height: 1.5;
   font-size: 10px;
+
+  @media screen and (min-width: 896px) {
+    font-size: 14px;
+  }
 `;
 
 interface SpacerProps {
@@ -36,11 +44,4 @@ const Button = styled.button`
   cursor: pointer;
 `;
 
-const Card = styled.div`
-  position: relative;
-  background-color: #fff;
-  border-radius: 16px;
-  box-shadow: rgba(149, 157, 165, 0.2) 0px 8px 24px;
-`;
-
-export { Container, Title, Description, Spacer, Button, Card };
+export { Container, Title, Description, Spacer, Button };

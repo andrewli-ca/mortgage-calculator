@@ -12,6 +12,10 @@ const SliderWrapper = styled.div`
   label {
     color: #929ba4;
     font-size: 10px;
+
+    @media screen and (min-width: 896px) {
+      font-size: 12px;
+    }
   }
 `;
 
@@ -42,21 +46,31 @@ const StyledSliderMarkerLabel = styled.span<StyledSliderMarkerLabelProps>`
   right: ${(props) => (props.type === 'max' ? '0px' : 'auto')};
   color: #929ba4;
   font-size: 10px;
+
+  @media screen and (min-width: 896px) {
+    top: 16px;
+    font-size: 12px;
+  }
 `;
 
 const StyledSliderHandle = styled(SliderHandle)`
   background: #fff;
   border: 2px solid #a4c4de;
-  width: 14px;
-  height: 14px;
+  width: 12px;
+  height: 12px;
 `;
 
 const DisplayValue = styled.div`
   padding-top: 8px;
-  padding-bottom: 12px;
+  padding-bottom: 8px;
   margin-left: 4px;
   font-weight: 500;
   color: #4b5563;
+
+  @media screen and (min-width: 896px) {
+    padding-top: 12px;
+    padding-bottom: 16px;
+  }
 
   .symbol {
     display: inline-block;
@@ -64,12 +78,22 @@ const DisplayValue = styled.div`
     line-height: 1.2;
     vertical-align: top;
     min-width: 12px;
+
+    @media screen and (min-width: 896px) {
+      font-size: 18px;
+      line-height: 1.3;
+      min-width: 16px;
+    }
   }
 
   .value,
   .percentage {
     font-size: 21px;
     line-height: 1;
+
+    @media screen and (min-width: 896px) {
+      font-size: 32px;
+    }
   }
 `;
 

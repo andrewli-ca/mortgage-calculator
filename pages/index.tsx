@@ -3,18 +3,50 @@ import styled from 'styled-components';
 import { HomeLayout } from '../components/HomeLayout';
 import Layout from '../components/Layout';
 import { Radio, RadioGroup } from '../components/Radio';
-import {
-  Button,
-  Card,
-  Description,
-  Spacer,
-  Title,
-} from '../components/sharedstyles';
+import { Button, Description, Spacer, Title } from '../components/sharedstyles';
 import { Slider } from '../components/Slider';
 import type { NextPageWithLayout } from './_app';
 
+const MortgageCalculatorWrapper = styled.div`
+  > div:last-child {
+    margin-top: 36px;
+
+    @media screen and (min-width: 768px) {
+      margin-top: 0px;
+    }
+  }
+
+  @media screen and (min-width: 768px) {
+    display: grid;
+    gap: 24px;
+    grid-template-columns: 1fr 1fr;
+
+    > div:first-child {
+      width: 76%;
+    }
+  }
+
+  @media screen and (min-width: 896px) {
+    max-width: 1024px;
+  }
+`;
+
+const InputsWrapper = styled.div`
+  > div:not(:last-child) {
+    margin-bottom: 32px;
+
+    @media screen and (min-width: 896px) {
+      margin-bottom: 42px;
+    }
+  }
+`;
+
 const PaymentAmountWrapper = styled.div`
   position: relative;
+  background-color: #fff;
+  border-radius: 16px;
+  box-shadow: rgba(149, 157, 165, 0.2) 0px 8px 24px;
+  height: 100%;
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -23,17 +55,28 @@ const PaymentAmountWrapper = styled.div`
   padding-left: 32px;
   padding-right: 32px;
 
+  @media screen and (min-width: 896px) {
+    padding-top: 60px;
+    padding-bottom: 48px;
+    padding-left: 32px;
+    padding-right: 32px;
+  }
+
   & p {
     color: #9faeb9;
     font-weight: 600;
     font-size: 14px;
     text-align: center;
+
+    @media screen and (min-width: 896px) {
+      font-size: 16px;
+    }
   }
 `;
 
 const PaymentAmount = styled.div`
   text-align: center;
-  margin-top: 56px;
+  margin-top: 60px;
 
   .symbol,
   .dollars,
@@ -54,6 +97,10 @@ const PaymentAmount = styled.div`
     font-size: 72px;
     line-height: 1;
     vertical-align: top;
+
+    @media screen and (min-width: 896px) {
+      font-size: 82px;
+    }
   }
 
   .unit {
@@ -71,28 +118,6 @@ const ApplyButton = styled(Button)`
   margin: 0 auto;
 `;
 
-const MortgageCalculatorWrapper = styled.div`
-  display: flex;
-  justify-content: space-between;
-  flex-wrap: wrap;
-  max-width: 672px;
-  gap: 80px;
-
-  > div:nth-child(1) {
-    flex-grow: 1;
-    min-width: 256px;
-
-    @media screen and (min-width: 768px) {
-      max-width: 256px;
-      flex-grow: 0;
-    }
-  }
-
-  > div:nth-child(2) {
-    flex-grow: 1;
-  }
-`;
-
 const Page: NextPageWithLayout = () => {
   return (
     <Fragment>
@@ -101,7 +126,7 @@ const Page: NextPageWithLayout = () => {
       <Description>Qualify or apply your mortgage in minutes</Description>
       <Spacer size={36} />
       <MortgageCalculatorWrapper>
-        <div>
+        <InputsWrapper>
           <Slider
             type="price"
             label="Purchase Price"
@@ -109,7 +134,6 @@ const Page: NextPageWithLayout = () => {
             min={50000}
             max={2500000}
           />
-          <Spacer size={36} />
           <Slider
             type="percentage"
             label="Interest Rate"
@@ -117,28 +141,24 @@ const Page: NextPageWithLayout = () => {
             min={0}
             max={2500}
           />
-          <Spacer size={36} />
           <RadioGroup label="Period">
             <Radio value="20">20 Years</Radio>
             <Radio value="25">25 Years</Radio>
             <Radio value="30">30 Years</Radio>
           </RadioGroup>
-        </div>
-        <div>
-          <Card>
-            <PaymentAmountWrapper>
-              <p>Your total monthly payment will be</p>
-              <PaymentAmount>
-                <span className="symbol">$</span>
-                <span className="dollars">853</span>
-                <span className="cents">50</span>
-                <p className="unit">/month</p>
-              </PaymentAmount>
-            </PaymentAmountWrapper>
-            <Spacer size={48} />
-            <ApplyButton>Apply Today</ApplyButton>
-          </Card>
-        </div>
+        </InputsWrapper>
+
+        <PaymentAmountWrapper>
+          <p>Your total monthly payment will be</p>
+          <PaymentAmount>
+            <span className="symbol">$</span>
+            <span className="dollars">853</span>
+            <span className="cents">50</span>
+            <p className="unit">/month</p>
+          </PaymentAmount>
+          <Spacer size={48} />
+          <ApplyButton>Apply Today</ApplyButton>
+        </PaymentAmountWrapper>
       </MortgageCalculatorWrapper>
     </Fragment>
   );
