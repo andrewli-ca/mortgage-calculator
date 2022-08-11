@@ -2,6 +2,7 @@ import { Fragment, ReactElement } from 'react';
 import styled from 'styled-components';
 import { HomeLayout } from '../components/HomeLayout';
 import Layout from '../components/Layout';
+import { Radio, RadioGroup } from '../components/Radio';
 import {
   Button,
   Card,
@@ -91,7 +92,13 @@ const Page: NextPageWithLayout = () => {
           max={2500}
         />
         <Spacer size={48} />
+        <RadioGroup label="Period">
+          <Radio value="20">20 Years</Radio>
+          <Radio value="25">25 Years</Radio>
+          <Radio value="30">30 Years</Radio>
+        </RadioGroup>
       </form>
+      <Spacer size={48} />
       <Card>
         <PaymentAmountWrapper>
           <p>Your total monthly payment will be</p>
