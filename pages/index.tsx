@@ -1,4 +1,4 @@
-import { Fragment, ReactElement } from 'react';
+import { Fragment, ReactElement, useState } from 'react';
 import styled from 'styled-components';
 import { HomeLayout } from '../components/HomeLayout';
 import Layout from '../components/Layout';
@@ -119,6 +119,9 @@ const ApplyButton = styled(Button)`
 `;
 
 const Page: NextPageWithLayout = () => {
+  const [purchasePrice, setPurchasePrice] = useState(250000);
+  const [interestRate, setInterestRate] = useState(150);
+
   return (
     <Fragment>
       <Title>Get started with Digital Credit Experience</Title>
@@ -130,16 +133,18 @@ const Page: NextPageWithLayout = () => {
           <Slider
             type="price"
             label="Purchase Price"
-            value={250000}
+            defaultValue={purchasePrice}
             min={50000}
             max={2500000}
+            onChange={setPurchasePrice}
           />
           <Slider
             type="percentage"
             label="Interest Rate"
-            value={150}
+            defaultValue={interestRate}
             min={0}
             max={2500}
+            onChange={setInterestRate}
           />
           <RadioGroup label="Period">
             <Radio value="20">20 Years</Radio>
