@@ -22,7 +22,11 @@ interface RadioGroupProps {
 const StyledRadioGroup = styled.div`
   > span {
     color: #929ba4;
-    font-size: 10px;
+    font-size: 12px;
+
+    @media screen and (min-width: 768px) {
+      font-size: 10px;
+    }
 
     @media screen and (min-width: 896px) {
       font-size: 12px;
@@ -68,7 +72,11 @@ const StyledRadio = styled.label<StyleRadioProps>`
   opacity: ${(props) => (props.isDisabled ? 0.4 : 1)};
   font-weight: 600;
   color: #000;
-  font-size: 13px;
+  font-size: 14px;
+
+  @media screen and (min-width: 768px) {
+    font-size: 13px;
+  }
 
   @media screen and (min-width: 896px) {
     font-size: 16px;
