@@ -112,7 +112,7 @@ function Radio(props: AriaRadioProps) {
           cx="15"
           cy="15"
           r="13"
-          fill="none"
+          fill="#fff"
           stroke={isSelected ? '#4C3272' : '#807D85'}
           strokeWidth="2"
         />
