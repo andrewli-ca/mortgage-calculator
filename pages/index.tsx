@@ -23,7 +23,7 @@ const MortgageCalculatorWrapper = styled.div`
   @media screen and (min-width: 768px) {
     display: grid;
     gap: 24px;
-    grid-template-columns: 1fr 1fr;
+    grid-template-columns: minmax(0, 1fr) minmax(0, 1fr);
 
     > div:first-child {
       width: 76%;
