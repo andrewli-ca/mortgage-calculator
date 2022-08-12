@@ -46,7 +46,7 @@ function fetchMortgage({
           cents: +dollarsAndCents[1],
         };
       } else {
-        return Promise.reject(data.error);
+        return Promise.reject(new Error(data.error));
       }
     });
 }
