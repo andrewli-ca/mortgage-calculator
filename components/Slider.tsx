@@ -79,13 +79,13 @@ const DisplayValue = styled.div<DisplayValueProps>`
   padding-top: 12px;
   padding-bottom: 12px;
   margin-left: 4px;
-  font-weight: 500;
+  font-weight: 400;
   color: #4b5563;
   opacity: ${(props) => (props.disabled ? 0.4 : 1)};
 
   @media screen and (min-width: 768px) {
     padding-top: 8px;
-    padding-bottom: 8px;
+    padding-bottom: 12px;
   }
 
   @media screen and (min-width: 896px) {
