@@ -133,6 +133,7 @@ function BaseSlider({
       onChange={onChange}
       onPointerUp={() => onEventUp()}
       onKeyUp={() => onEventUp()}
+      onTouchEnd={() => onEventUp()}
       disabled={disabled}
     >
       <StyledSliderTrack>
