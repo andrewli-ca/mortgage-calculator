@@ -45,7 +45,7 @@ const Spacer = styled.div<SpacerProps>`
 
 const Button = styled.button`
   font-size: 16px;
-  padding: 14px 24px;
+  padding: 15px 24px;
   border-radius: 24px;
   background-color: ${(props) => props.theme.colors.primary};
   color: #fff;

@@ -70,7 +70,7 @@ const StyledRadio = styled.label<StyleRadioProps>`
   display: flex;
   align-items: center;
   opacity: ${(props) => (props.isDisabled ? 0.4 : 1)};
-  font-weight: 600;
+  font-weight: 500;
   color: #000;
   font-size: 14px;
 

@@ -131,6 +131,7 @@ const ApplyButton = styled(Button)`
   bottom: -24px;
   width: fit-content;
   margin: 0 auto;
+  border: none;
 `;
 
 function MortgagePaymentResults({
