@@ -1,11 +1,12 @@
-import { cp } from 'fs/promises';
-import { Fragment, ReactElement, useState } from 'react';
+import { Fragment, ReactElement, useEffect, useState } from 'react';
 import styled from 'styled-components';
 import { HomeLayout } from '../components/HomeLayout';
 import Layout from '../components/Layout';
 import { Radio, RadioGroup } from '../components/Radio';
 import { Button, Description, Spacer, Title } from '../components/sharedstyles';
 import { Slider } from '../components/Slider';
+import { useAsync } from '../hooks/useAsync';
+import { fetchMortgage, MortgageData } from '../utils/api-client';
 import type { NextPageWithLayout } from './_app';
 
 const MortgageCalculatorWrapper = styled.div`
@@ -120,9 +121,20 @@ const ApplyButton = styled(Button)`
 `;
 
 const Page: NextPageWithLayout = () => {
-  const [purchasePrice, setPurchasePrice] = useState(250000);
-  const [interestRate, setInterestRate] = useState(150);
+  const [principal, setPrincipal] = useState(250000);
+  const [annualInterestRate, setAnnualInterestRate] = useState(150);
   const [termOfLoan, setTermOfLoan] = useState(20);
+  const { run, data, isLoading } = useAsync<MortgageData>();
+
+  useEffect(() => {
+    run(
+      fetchMortgage({
+        principal,
+        annualInterestRate: annualInterestRate / 100,
+        termOfLoan,
+      })
+    );
+  }, [principal, annualInterestRate, termOfLoan, run]);
 
   return (
     <Fragment>
@@ -135,18 +147,18 @@ const Page: NextPageWithLayout = () => {
           <Slider
             type="price"
             label="Purchase Price"
-            defaultValue={purchasePrice}
+            defaultValue={principal}
             min={50000}
             max={2500000}
-            onChange={setPurchasePrice}
+            onChange={setPrincipal}
           />
           <Slider
             type="percentage"
             label="Interest Rate"
-            defaultValue={interestRate}
+            defaultValue={annualInterestRate}
             min={0}
             max={2500}
-            onChange={setInterestRate}
+            onChange={setAnnualInterestRate}
           />
           <RadioGroup
             label="Period"
@@ -162,10 +174,22 @@ const Page: NextPageWithLayout = () => {
         <PaymentAmountWrapper>
           <p>Your total monthly payment will be</p>
           <PaymentAmount>
-            <span className="symbol">$</span>
-            <span className="dollars">853</span>
-            <span className="cents">50</span>
-            <p className="unit">/month</p>
+            {isLoading ? (
+              <div>calculating...</div>
+            ) : !data ? (
+              <div>no data</div>
+            ) : (
+              <Fragment>
+                <span className="symbol">$</span>
+                <span className="dollars">
+                  {new Intl.NumberFormat().format(data.dollars)}
+                </span>
+                <span className="cents">
+                  {String(data.cents).padStart(2, '0')}
+                </span>
+                <p className="unit">/month</p>
+              </Fragment>
+            )}
           </PaymentAmount>
           <Spacer size={48} />
           <ApplyButton>Apply Today</ApplyButton>
