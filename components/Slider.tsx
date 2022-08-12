@@ -131,6 +131,7 @@ interface BaseSliderProps {
   minLabel?: string;
   maxLabel?: string;
   disabled: boolean;
+  ariaLabel: string;
 }
 
 function BaseSlider({
@@ -142,6 +143,7 @@ function BaseSlider({
   minLabel,
   maxLabel,
   disabled,
+  ariaLabel,
 }: BaseSliderProps) {
   return (
     <StyledSliderInput
@@ -153,6 +155,7 @@ function BaseSlider({
       onKeyUp={() => onEventUp()}
       onTouchEnd={() => onEventUp()}
       disabled={disabled}
+      getAriaLabel={() => ariaLabel}
     >
       <StyledSliderTrack>
         <StyledSliderMarker value={min}>
@@ -207,6 +210,7 @@ interface SliderProps {
   min: number;
   max: number;
   disabled: boolean;
+  ariaLabel: string;
 }
 
 function Slider({
@@ -217,6 +221,7 @@ function Slider({
   min,
   max,
   disabled,
+  ariaLabel,
 }: SliderProps) {
   const [value, setValue] = useState(defaultValue);
   const [isEventUp, setIsEventUp] = useState(false);
@@ -261,6 +266,7 @@ function Slider({
         minLabel={labels?.minLabel}
         maxLabel={labels?.maxLabel}
         disabled={disabled}
+        ariaLabel={ariaLabel}
       />
     </SliderWrapper>
   );

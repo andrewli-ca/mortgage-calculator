@@ -114,8 +114,6 @@ interface PaymentAmountProps {
 }
 
 function PaymentAmount({ dollars, cents }: PaymentAmountProps) {
-  console.log({ dollars });
-
   return (
     <StyledPaymentAmount dollars={dollars}>
       <span className="symbol">$</span>

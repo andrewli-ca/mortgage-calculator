@@ -46,6 +46,7 @@ function MortgagePaymentInputs({
         max={2500000}
         onChange={setPrincipal}
         disabled={isLoading}
+        ariaLabel="Slide purchase price slider"
       />
       <Slider
         type="percentage"
@@ -55,6 +56,7 @@ function MortgagePaymentInputs({
         max={250}
         onChange={setAnnualInterestRate}
         disabled={isLoading}
+        ariaLabel="Slide interest rate slider"
       />
       <RadioGroup
         label="Period"
