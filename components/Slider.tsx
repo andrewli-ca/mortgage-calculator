@@ -164,7 +164,7 @@ function getPriceLabel(value: number) {
 
 function getPercentageLabel(value: number) {
   if (value > 0) {
-    return `${value / 100}%`;
+    return `${value / 10}%`;
   }
 
   return `0`;
@@ -174,7 +174,7 @@ function formatValue(type: 'price' | 'percentage', value: number): string {
   if (type === 'price') {
     return new Intl.NumberFormat().format(value);
   } else if (type === 'percentage') {
-    return (value / 100).toString();
+    return (value / 10).toString();
   }
 
   return '';

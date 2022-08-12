@@ -45,7 +45,7 @@ const Page: NextPageWithLayout = () => {
     run(
       fetchMortgage({
         principal,
-        annualInterestRate: annualInterestRate / 100,
+        annualInterestRate: annualInterestRate / 10,
         termOfLoan,
       })
     );

@@ -48,7 +48,7 @@ function MortgagePaymentInputs({
         label="Interest Rate"
         defaultValue={annualInterestRate}
         min={0}
-        max={2500}
+        max={250}
         onChange={setAnnualInterestRate}
         disabled={isLoading}
       />
