@@ -11,6 +11,11 @@ const StyledHeader = styled.header`
   z-index: 1;
 `;
 
+const HamburgerButton = styled.button`
+  border: none;
+  background-color: white;
+`;
+
 const StyledNav = styled.nav`
   padding: 12px 16px;
   padding-left: 16px;
@@ -37,7 +42,9 @@ function Header() {
       <StyledNav>
         <HeaderContainer>
           <Image src={Logo} alt="Logo" />
-          <Image src={Hamburger} alt="Menu" />
+          <HamburgerButton>
+            <Image src={Hamburger} alt="Menu" />
+          </HamburgerButton>
         </HeaderContainer>
       </StyledNav>
     </StyledHeader>

@@ -15,6 +15,8 @@ let RadioContext = React.createContext<RadioGroupState | null>(null);
 
 interface RadioGroupProps {
   children: React.ReactChild[];
+  onSelect: any;
+  isDisabled: boolean;
 }
 
 const StyledRadioGroup = styled.div`
@@ -37,9 +39,15 @@ const StyledRadioGroup = styled.div`
 `;
 
 function RadioGroup(props: AriaRadioGroupProps & RadioGroupProps) {
-  let { children, label } = props;
+  let { children, onSelect, label } = props;
   let state = useRadioGroupState(props);
   let { radioGroupProps, labelProps } = useRadioGroup(props, state);
+
+  React.useEffect(() => {
+    if (state.selectedValue) {
+      onSelect(+state.selectedValue);
+    }
+  }, [onSelect, state.selectedValue]);
 
   return (
     <StyledRadioGroup {...radioGroupProps}>
@@ -101,7 +109,7 @@ function Radio(props: AriaRadioProps) {
           strokeWidth="2"
         />
         <circle cx="15" cy="15" r="8" fill={isSelected ? '#4C3272' : 'none'} />
-        {isFocusVisible && <circle cx="15" cy="15" r="8" fill={'#4C3272'} />}
+        {isFocusVisible && <circle cx="15" cy="15" r="8" fill="#216ad4" />}
       </svg>
       {children}
     </StyledRadio>

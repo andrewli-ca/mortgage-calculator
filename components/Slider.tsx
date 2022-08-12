@@ -6,6 +6,7 @@ import {
   SliderTrack,
 } from '@reach/slider';
 import '@reach/slider/styles.css';
+import { useEffect, useMemo, useState } from 'react';
 import styled from 'styled-components';
 
 const SliderWrapper = styled.div`
@@ -46,9 +47,10 @@ const StyledSliderMarkerLabel = styled.span<StyledSliderMarkerLabelProps>`
   right: ${(props) => (props.type === 'max' ? '0px' : 'auto')};
   color: #929ba4;
   font-size: 10px;
+  user-select: none;
 
   @media screen and (min-width: 896px) {
-    top: 16px;
+    top: 20px;
     font-size: 12px;
   }
 `;
@@ -60,12 +62,17 @@ const StyledSliderHandle = styled(SliderHandle)`
   height: 12px;
 `;
 
-const DisplayValue = styled.div`
+interface DisplayValueProps {
+  disabled: boolean;
+}
+
+const DisplayValue = styled.div<DisplayValueProps>`
   padding-top: 8px;
   padding-bottom: 8px;
   margin-left: 4px;
   font-weight: 500;
   color: #4b5563;
+  opacity: ${(props) => (props.disabled ? 0.4 : 1)};
 
   @media screen and (min-width: 896px) {
     padding-top: 12px;
@@ -98,45 +105,51 @@ const DisplayValue = styled.div`
 `;
 
 interface BaseSliderProps {
-  label: string;
-  value?: number;
-  displayValue: any;
+  value: number;
+  onChange: any;
+  onEventUp: any;
   min: number;
   max: number;
   minLabel?: string;
   maxLabel?: string;
+  disabled: boolean;
 }
 
 function BaseSlider({
-  label,
   value,
-  displayValue,
+  onChange,
+  onEventUp,
   min,
   max,
   minLabel,
   maxLabel,
+  disabled,
 }: BaseSliderProps) {
   return (
-    <SliderWrapper>
-      <label>{label}</label>
-      {displayValue}
-      <StyledSliderInput min={0} max={100}>
-        <StyledSliderTrack>
-          <StyledSliderMarker value={0}>
-            <StyledSliderMarkerLabel type="min">
-              {minLabel}
-            </StyledSliderMarkerLabel>
-          </StyledSliderMarker>
-          <StyledSliderRange />
-          <StyledSliderMarker value={100}>
-            <StyledSliderMarkerLabel type="max">
-              {maxLabel}
-            </StyledSliderMarkerLabel>
-          </StyledSliderMarker>
-          <StyledSliderHandle />
-        </StyledSliderTrack>
-      </StyledSliderInput>
-    </SliderWrapper>
+    <StyledSliderInput
+      min={min}
+      max={max}
+      value={value}
+      onChange={onChange}
+      onPointerUp={() => onEventUp()}
+      onKeyUp={() => onEventUp()}
+      disabled={disabled}
+    >
+      <StyledSliderTrack>
+        <StyledSliderMarker value={min}>
+          <StyledSliderMarkerLabel type="min">
+            {minLabel}
+          </StyledSliderMarkerLabel>
+        </StyledSliderMarker>
+        <StyledSliderRange />
+        <StyledSliderMarker value={max}>
+          <StyledSliderMarkerLabel type="max">
+            {maxLabel}
+          </StyledSliderMarkerLabel>
+        </StyledSliderMarker>
+        <StyledSliderHandle />
+      </StyledSliderTrack>
+    </StyledSliderInput>
   );
 }
 
@@ -151,52 +164,86 @@ function getPriceLabel(value: number) {
 
 function getPercentageLabel(value: number) {
   if (value > 0) {
-    return `${value / 100}%`;
+    return `${value / 10}%`;
   }
 
   return `0`;
 }
 
+function formatValue(type: 'price' | 'percentage', value: number): string {
+  if (type === 'price') {
+    return new Intl.NumberFormat().format(value);
+  } else if (type === 'percentage') {
+    return (value / 10).toString();
+  }
+
+  return '';
+}
+
 interface SliderProps {
   type: 'price' | 'percentage';
   label: string;
-  value: number;
+  defaultValue: number;
+  onChange: any;
   min: number;
   max: number;
+  disabled: boolean;
 }
 
-function Slider({ label, type, value, min, max }: SliderProps) {
-  let sliderOptions;
+function Slider({
+  label,
+  type,
+  defaultValue,
+  onChange,
+  min,
+  max,
+  disabled,
+}: SliderProps) {
+  const [value, setValue] = useState(defaultValue);
+  const [isEventUp, setIsEventUp] = useState(false);
 
-  if (type === 'price') {
-    sliderOptions = {
-      minLabel: getPriceLabel(min),
-      maxLabel: getPriceLabel(max),
-      formattedValue: new Intl.NumberFormat().format(value),
-    };
-  } else if (type === 'percentage') {
-    sliderOptions = {
-      minLabel: getPercentageLabel(min),
-      maxLabel: getPercentageLabel(max),
-      formattedValue: value / 100,
-    };
-  }
+  useEffect(() => {
+    if (!isEventUp) {
+      return;
+    }
+
+    onChange(value);
+    setIsEventUp(false);
+  }, [isEventUp, onChange, value]);
+
+  const labels = useMemo(() => {
+    if (type === 'price') {
+      return {
+        minLabel: getPriceLabel(min),
+        maxLabel: getPriceLabel(max),
+      };
+    } else if (type === 'percentage') {
+      return {
+        minLabel: getPercentageLabel(min),
+        maxLabel: getPercentageLabel(max),
+      };
+    }
+  }, [max, min, type]);
 
   return (
-    <BaseSlider
-      label={label}
-      displayValue={
-        <DisplayValue>
-          <span className="symbol">{type === 'price' ? '$' : ''}</span>
-          <span className="value">{sliderOptions?.formattedValue}</span>
-          {type === 'percentage' ? <span className="percentage">%</span> : null}
-        </DisplayValue>
-      }
-      min={min}
-      max={max}
-      minLabel={sliderOptions?.minLabel}
-      maxLabel={sliderOptions?.maxLabel}
-    />
+    <SliderWrapper>
+      <label>{label}</label>
+      <DisplayValue disabled={disabled}>
+        <span className="symbol">{type === 'price' ? '$' : ''}</span>
+        <span className="value">{formatValue(type, value)}</span>
+        {type === 'percentage' ? <span className="percentage">%</span> : null}
+      </DisplayValue>
+      <BaseSlider
+        value={value}
+        onChange={setValue}
+        onEventUp={() => setIsEventUp(true)}
+        min={min}
+        max={max}
+        minLabel={labels?.minLabel}
+        maxLabel={labels?.maxLabel}
+        disabled={disabled}
+      />
+    </SliderWrapper>
   );
 }
 

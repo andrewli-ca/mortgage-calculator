@@ -18,7 +18,7 @@ export default function handler(
 ) {
     if(req.method === 'POST'){
       const {principal, annualInterestRate, termOfLoan} = req.query;
-      const values = calculatePayment({principal: parseInt(principal.toString()), annualInterestRate:parseInt(annualInterestRate.toString()), termOfLoan:parseInt(termOfLoan.toString())});
+      const values = calculatePayment({principal: parseInt(principal.toString()), annualInterestRate:parseFloat(annualInterestRate.toString()), termOfLoan:parseInt(termOfLoan.toString())});
       setTimeout(() => {
         if (values !== "NaN") res.status(200).json({ monthlyPayment: values });
         else

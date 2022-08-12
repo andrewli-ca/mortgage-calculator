@@ -23,6 +23,10 @@ const GlobalStyle = createGlobalStyle`
     font-family: Inter, -apple-system, BlinkMacSystemFont, Segoe UI, Roboto, Oxygen, Ubuntu, Cantarell, Fira Sans, Droid Sans, Helvetica Neue, sans-serif;
   }
 
+  button {
+    cursor: pointer;
+  }
+
   button:focus {
     outline: 1px dotted;
     outline: 5px auto -webkit-focus-ring-color;
