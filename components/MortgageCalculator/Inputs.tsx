@@ -5,7 +5,11 @@ import { Slider } from '../Slider';
 
 const InputsWrapper = styled.div`
   > div:not(:last-child) {
-    margin-bottom: 32px;
+    margin-bottom: 40px;
+
+    @media screen and (min-width: 768px) {
+      margin-bottom: 32px;
+    }
 
     @media screen and (min-width: 896px) {
       margin-bottom: 42px;

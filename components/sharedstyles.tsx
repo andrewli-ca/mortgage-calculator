@@ -8,9 +8,13 @@ const Container = styled.div`
 const Title = styled.h1`
   color: #66747f;
   line-height: 1.15;
-  font-size: 17px;
+  font-size: 20px;
   font-weight: 600;
   text-decoration: none;
+
+  @media screen and (min-width: 768px) {
+    font-size: 17px;
+  }
 
   @media screen and (min-width: 896px) {
     font-size: 24px;
@@ -20,7 +24,11 @@ const Title = styled.h1`
 const Description = styled.p`
   color: #bdc9d5;
   line-height: 1.5;
-  font-size: 10px;
+  font-size: 14px;
+
+  @media screen and (min-width: 768px) {
+    font-size: 10px;
+  }
 
   @media screen and (min-width: 896px) {
     font-size: 14px;

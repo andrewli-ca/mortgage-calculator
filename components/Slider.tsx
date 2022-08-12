@@ -12,7 +12,11 @@ import styled from 'styled-components';
 const SliderWrapper = styled.div`
   label {
     color: #929ba4;
-    font-size: 10px;
+    font-size: 12px;
+
+    @media screen and (min-width: 768px) {
+      font-size: 10px;
+    }
 
     @media screen and (min-width: 896px) {
       font-size: 12px;
@@ -42,12 +46,17 @@ interface StyledSliderMarkerLabelProps {
 
 const StyledSliderMarkerLabel = styled.span<StyledSliderMarkerLabelProps>`
   position: absolute;
-  top: 14px;
+  top: 16px;
   left: ${(props) => (props.type === 'min' ? '0px' : 'auto')};
   right: ${(props) => (props.type === 'max' ? '0px' : 'auto')};
   color: #929ba4;
-  font-size: 10px;
+  font-size: 12px;
   user-select: none;
+
+  @media screen and (min-width: 768px) {
+    font-size: 10px;
+    top: 14px;
+  }
 
   @media screen and (min-width: 896px) {
     top: 20px;
@@ -67,12 +76,17 @@ interface DisplayValueProps {
 }
 
 const DisplayValue = styled.div<DisplayValueProps>`
-  padding-top: 8px;
-  padding-bottom: 8px;
+  padding-top: 12px;
+  padding-bottom: 12px;
   margin-left: 4px;
   font-weight: 500;
   color: #4b5563;
   opacity: ${(props) => (props.disabled ? 0.4 : 1)};
+
+  @media screen and (min-width: 768px) {
+    padding-top: 8px;
+    padding-bottom: 8px;
+  }
 
   @media screen and (min-width: 896px) {
     padding-top: 12px;
@@ -95,8 +109,12 @@ const DisplayValue = styled.div<DisplayValueProps>`
 
   .value,
   .percentage {
-    font-size: 21px;
+    font-size: 24px;
     line-height: 1;
+
+    @media screen and (min-width: 768px) {
+      font-size: 21px;
+    }
 
     @media screen and (min-width: 896px) {
       font-size: 32px;
