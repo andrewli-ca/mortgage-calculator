@@ -19,7 +19,7 @@ function fetchMortgage({
   annualInterestRate,
   termOfLoan,
 }: MortgageArguments): Promise<MortgageData> {
-  let url = ` /api/mortgageCalculation/?principal=${encodeURIComponent(
+  let url = ` /api/mortgageCalculation?principal=${encodeURIComponent(
     principal
   )}&annualInterestRate=${encodeURIComponent(
     annualInterestRate
