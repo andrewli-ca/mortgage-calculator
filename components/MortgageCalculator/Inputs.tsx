@@ -20,6 +20,7 @@ interface MortgagePaymentInputsProps {
   setAnnualInterestRate: Dispatch<SetStateAction<number>>;
   termOfLoan: number;
   setTermOfLoan: Dispatch<SetStateAction<number>>;
+  isLoading: boolean;
 }
 
 function MortgagePaymentInputs({
@@ -29,6 +30,7 @@ function MortgagePaymentInputs({
   setAnnualInterestRate,
   termOfLoan,
   setTermOfLoan,
+  isLoading,
 }: MortgagePaymentInputsProps) {
   return (
     <InputsWrapper>
@@ -39,6 +41,7 @@ function MortgagePaymentInputs({
         min={50000}
         max={2500000}
         onChange={setPrincipal}
+        disabled={isLoading}
       />
       <Slider
         type="percentage"
@@ -47,11 +50,13 @@ function MortgagePaymentInputs({
         min={0}
         max={2500}
         onChange={setAnnualInterestRate}
+        disabled={isLoading}
       />
       <RadioGroup
         label="Period"
         onSelect={setTermOfLoan}
         defaultValue={termOfLoan.toString()}
+        isDisabled={isLoading}
       >
         <Radio value="20">20 Years</Radio>
         <Radio value="25">25 Years</Radio>

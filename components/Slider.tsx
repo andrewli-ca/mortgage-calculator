@@ -62,12 +62,17 @@ const StyledSliderHandle = styled(SliderHandle)`
   height: 12px;
 `;
 
-const DisplayValue = styled.div`
+interface DisplayValueProps {
+  disabled: boolean;
+}
+
+const DisplayValue = styled.div<DisplayValueProps>`
   padding-top: 8px;
   padding-bottom: 8px;
   margin-left: 4px;
   font-weight: 500;
   color: #4b5563;
+  opacity: ${(props) => (props.disabled ? 0.4 : 1)};
 
   @media screen and (min-width: 896px) {
     padding-top: 12px;
@@ -107,6 +112,7 @@ interface BaseSliderProps {
   max: number;
   minLabel?: string;
   maxLabel?: string;
+  disabled: boolean;
 }
 
 function BaseSlider({
@@ -117,6 +123,7 @@ function BaseSlider({
   max,
   minLabel,
   maxLabel,
+  disabled,
 }: BaseSliderProps) {
   return (
     <StyledSliderInput
@@ -126,6 +133,7 @@ function BaseSlider({
       onChange={onChange}
       onPointerUp={() => onEventUp()}
       onKeyUp={() => onEventUp()}
+      disabled={disabled}
     >
       <StyledSliderTrack>
         <StyledSliderMarker value={min}>
@@ -179,6 +187,7 @@ interface SliderProps {
   onChange: any;
   min: number;
   max: number;
+  disabled: boolean;
 }
 
 function Slider({
@@ -188,6 +197,7 @@ function Slider({
   onChange,
   min,
   max,
+  disabled,
 }: SliderProps) {
   const [value, setValue] = useState(defaultValue);
   const [isEventUp, setIsEventUp] = useState(false);
@@ -218,7 +228,7 @@ function Slider({
   return (
     <SliderWrapper>
       <label>{label}</label>
-      <DisplayValue>
+      <DisplayValue disabled={disabled}>
         <span className="symbol">{type === 'price' ? '$' : ''}</span>
         <span className="value">{formatValue(type, value)}</span>
         {type === 'percentage' ? <span className="percentage">%</span> : null}
@@ -231,6 +241,7 @@ function Slider({
         max={max}
         minLabel={labels?.minLabel}
         maxLabel={labels?.maxLabel}
+        disabled={disabled}
       />
     </SliderWrapper>
   );

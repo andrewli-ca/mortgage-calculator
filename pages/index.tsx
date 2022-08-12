@@ -65,6 +65,7 @@ const Page: NextPageWithLayout = () => {
           setPrincipal={setPrincipal}
           setAnnualInterestRate={setAnnualInterestRate}
           setTermOfLoan={setTermOfLoan}
+          isLoading={isLoading}
         />
         <MortgagePaymentOutput
           data={data}

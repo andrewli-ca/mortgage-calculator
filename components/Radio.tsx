@@ -16,6 +16,7 @@ let RadioContext = React.createContext<RadioGroupState | null>(null);
 interface RadioGroupProps {
   children: React.ReactChild[];
   onSelect: any;
+  isDisabled: boolean;
 }
 
 const StyledRadioGroup = styled.div`
