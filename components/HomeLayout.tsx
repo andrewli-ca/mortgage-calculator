@@ -1,6 +1,7 @@
 import { ReactNode } from 'react';
 import styled from 'styled-components';
 import { Container } from './sharedstyles';
+import Head from 'next/head';
 
 const PageLayout = styled.div`
   background-color: #e3eaf7;
@@ -17,6 +18,14 @@ const PageLayout = styled.div`
 function HomeLayout({ children }: { children: ReactNode }) {
   return (
     <PageLayout>
+      <Head>
+        <title>Mortgage Calculator | Produce8</title>
+        <meta
+          name="description"
+          content="Qualify or apply your mortgage in minutes"
+        />
+        <link rel="icon" href="/favicon.ico" />
+      </Head>
       <Container>{children}</Container>
     </PageLayout>
   );
