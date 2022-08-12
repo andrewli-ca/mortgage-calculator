@@ -41,7 +41,6 @@ const Button = styled.button`
   border-radius: 24px;
   background-color: ${(props) => props.theme.colors.primary};
   color: #fff;
-  cursor: pointer;
 `;
 
 const Card = styled.div`
