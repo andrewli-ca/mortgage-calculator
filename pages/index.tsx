@@ -37,7 +37,7 @@ const MortgageCalculatorWrapper = styled.div`
 
 const Page: NextPageWithLayout = () => {
   const [principal, setPrincipal] = useState(250000);
-  const [annualInterestRate, setAnnualInterestRate] = useState(150);
+  const [annualInterestRate, setAnnualInterestRate] = useState(15);
   const [termOfLoan, setTermOfLoan] = useState(20);
   const { run, data, error, isLoading } = useAsync<MortgageData>();
 
