@@ -109,7 +109,7 @@ function Radio(props: AriaRadioProps) {
           strokeWidth="2"
         />
         <circle cx="15" cy="15" r="8" fill={isSelected ? '#4C3272' : 'none'} />
-        {isFocusVisible && <circle cx="15" cy="15" r="8" fill={'#4C3272'} />}
+        {isFocusVisible && <circle cx="15" cy="15" r="8" fill="#216ad4" />}
       </svg>
       {children}
     </StyledRadio>
