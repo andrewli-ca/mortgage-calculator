@@ -59,7 +59,6 @@ const StyledPaymentAmount = styled.div<StyledPaymentAmountProps>`
   .cents {
     color: #3d515b;
     font-weight: 900;
-    vertical-align: top;
     letter-spacing: 0.025em;
   }
 
@@ -67,30 +66,23 @@ const StyledPaymentAmount = styled.div<StyledPaymentAmountProps>`
   .cents {
     font-size: ${(props) =>
       props.dollars.toString().length <= 3 ? '28px' : '26px'};
-    line-height: ${(props) =>
-      props.dollars.toString().length <= 3 ? 1.5 : 1.8};
+    vertical-align: top;
 
     @media screen and (min-width: 768px) {
       font-size: ${(props) =>
         props.dollars.toString().length <= 3 ? '32px' : '24px'};
-      line-height: ${(props) =>
-        props.dollars.toString().length <= 3 ? 1.5 : 1.8};
     }
 
     @media screen and (min-width: 896px) {
       font-size: ${(props) =>
         props.dollars.toString().length <= 3 ? '32px' : '36px'};
-      line-height: ${(props) =>
-        props.dollars.toString().length <= 3 ? 1.4 : 1.9};
     }
   }
 
   .dollars {
     font-size: ${(props) =>
       props.dollars.toString().length <= 3 ? '76px' : '56px'};
-    line-height: ${(props) =>
-      props.dollars.toString().length <= 3 ? 1 : 1.25};
-    vertical-align: top;
+    line-height: 0.925;
 
     @media screen and (min-width: 768px) {
       font-size: ${(props) =>
